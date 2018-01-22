@@ -1,0 +1,80 @@
+
+html{
+     margin-left: 0px;
+     height: 100%;   
+     background-image: url("../img/background.jpeg");
+     background-size:   cover;                     
+     background-repeat:   no-repeat;
+}
+
+button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 21px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+body{
+      margin-left:  30px;
+}
+h2{
+  color:#5c2214;
+  margin:20px 0 0 0;
+  text-align: center;
+  animation-duration: 1s;
+  /* animation-name: bounceInUp; */
+}
+p {
+    display: block;
+    margin-top: 1.5em;
+    margin-bottom: 1em;
+    margin-left:  0px;
+    margin-right: 0;
+    font-family:Arial, Helvetica, sans-serif;
+
+}
+
+
+@keyframes bounceInUp {
+  from, 60%, 75%, 90%, to {
+    animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  }
+  from {
+    opacity: 0;
+    transform: translate3d(0, 3000px, 0);
+  }
+  60% {
+    opacity: 1;
+    transform: translate3d(0, -20px, 0);
+  }
+  75% {
+    transform: translate3d(0, 10px, 0);
+  }
+  90% {
+    transform: translate3d(0, -5px, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+
+button:hover {background-color: #3e8e41}
+
+.no_session:hover{
+    background-color: #3356ca
+}
+
+.no_session {
+    background-color: #34358d; 
+    text-align: center;
+    display:block;
+    width:140px;
+    height:35px;
+    font-size: 16px;
+    margin-top: 25px;
+    border-radius: 12px;
+}
