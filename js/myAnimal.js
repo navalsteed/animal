@@ -52,13 +52,6 @@ function onQueryAnimal(node) {
     });
 }
 
-/* function isQuestion(node) {
-    if (node.value != null && node.value.includes("?")) {
-        return true
-    }
-    else return false
-} */
-
 
 //loop through all nodes and make modification
 function traverse(obj) {
@@ -192,6 +185,10 @@ function getYesOrNo(node) {
     });
 }
 
+
+/**
+ * main program loop
+ */
 $(document).ready(function () {
     if (typeof localStorage === "undefined" || localStorage === null) {
         alert("Opps!!The application can not run under this browser\nPleasase Try another browser, like firefox, chrome");
