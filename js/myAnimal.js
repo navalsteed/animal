@@ -1,7 +1,11 @@
-var animalQue = "What animal did you think of?";
 
-var queCount = -1;
 
+/*track how many questions computer has asked user,
+*include the last question "Is it a (animal)" therfore starts with -1,
+* show the value on the scrren to tell user how many question has been aksed
+*/
+
+var queCount = -1;  
 /*
 *define data model
 */
@@ -92,12 +96,16 @@ function capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 }
 
+
+/*
+*record question and answer prrovided by user, then save them into the binary tree.
+*/
 function updateTree(node) {
     var _animalOld = node.value;
     $("form").show();
     $("div.checkBoxInput").hide();
     $("div.myButton").hide();
-    $("p").text(animalQue);  //what animal did you think of?
+    $("p").text("What animal did you think of?");  //what animal did you think of?
     $("input:first").val('');
     $("input:first").focus();
     var q = null;
@@ -113,22 +121,23 @@ function updateTree(node) {
             $("input:first").val('');
             $("input:first").focus();
         }
-        if (submitCount == 1) {
+        if (submitCount == 1 && input!="") { //input validation
             var latestAnimal = input;
             localStorage.setItem("latestAnimal", latestAnimal);
             var t = distinAnimal(_animalOld, latestAnimal);
             $("p").text(t);
-            $("input:first").val('');
-            $("input:first").focus();
+            $("input:first").val('');//reset input field
+            $("input:first").focus();//place the cursor at the right place
+           // continue;
         }
         if (submitCount == 2) {
-            q = $("input").val();
-            if (q.includes("?")) {
+            q = $("input").val();           
+            if (q.charAt(q.length - 1) == "?") {
                 var an = localStorage.getItem("latestAnimal");
-                $("p").text("What would the right answer be for a " + localStorage.getItem("latestAnimal") + "? (Y/N)");
+                $("p").text("What would the right answer be for a " + localStorage.getItem("latestAnimal")+ "? (Y/N)");
                 var v = document.getElementById("textInput");
-                v.style.visibility = 'hidden';
-                $("div.checkBoxInput").show();
+                v.style.visibility = 'hidden';  //hide text input
+                $("div.checkBoxInput").show();  //display checkboxes for user to select
             } else {
                 alert("Please type a question that ends with question mark.");
                 submitCount--;
@@ -147,7 +156,7 @@ function updateTree(node) {
                 var _node = localStorage.getItem("root");
                 _node = JSON.parse(_node);
                 traverse(_node);
-                localStorage.setItem("root", JSON.stringify(_node));
+                localStorage.setItem("root", JSON.stringify(_node)); //save modified data into binary tree
                  $("form").hide();
                 document.getElementById("yesCheckbox").checked = false;   //reset check box
                 document.getElementById("noCheckbox").checked = false;   //reset check box
@@ -164,13 +173,17 @@ function updateTree(node) {
 
 }
 /*
-*get or set checkbox value(yes or no)
+*Captilize the first letter of each question 
 */
 var cbValue = {
     get: function (name) { return this['_' + name]; },
     set: function (name, value) { this['_' + name] = value; }
 };
 
+
+/*
+*Determine whether user cliked yes button or no button
+*/
 
 function getYesOrNo(node) {
     $("button").click(function () {
@@ -187,7 +200,7 @@ function getYesOrNo(node) {
 
 
 /**
- * main program loop
+ * main program starts here
  */
 $(document).ready(function () {
     if (typeof localStorage === "undefined" || localStorage === null) {
@@ -220,6 +233,10 @@ $(document).ready(function () {
 });
 
 
+
+/**
+ * dispaly question when computer ask user to provide distinctive question
+ */
 function distinAnimal(animalA, animalB) {
     return "With what yes-no question could you distinguish a " + animalA + " from a " + animalB + "?";
 }
