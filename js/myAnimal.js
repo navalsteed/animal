@@ -5,7 +5,7 @@
 * show the value on the scrren to tell user how many question has been aksed
 */
 
-var queCount = -1;  
+var queCount = -1;
 /*
 *define data model
 */
@@ -13,7 +13,7 @@ function BST(val) {
     this.value = val;
     this.yesNode = null;
     this.noNode = null;
-    this.isQuestion=false;
+    this.isQuestion = false;
 }
 
 
@@ -71,7 +71,7 @@ function traverse(obj) {
     if (obj.value) {
         if (obj.value == animalOld) {
             obj.value = que;
-            obj.isQuestion=true;
+            obj.isQuestion = true;
             if (bo == 1) {
                 obj.yesNode = new BST(animalNew);
                 obj.noNode = new BST(animalOld);
@@ -121,20 +121,20 @@ function updateTree(node) {
             $("input:first").val('');
             $("input:first").focus();
         }
-        if (submitCount == 1 && input!="") { //input validation
+        if (submitCount == 1 && input != "") { //input validation
             var latestAnimal = input;
             localStorage.setItem("latestAnimal", latestAnimal);
             var t = distinAnimal(_animalOld, latestAnimal);
             $("p").text(t);
             $("input:first").val('');//reset input field
             $("input:first").focus();//place the cursor at the right place
-           // continue;
+            // continue;
         }
         if (submitCount == 2) {
-            q = $("input").val();           
+            q = $("input").val();
             if (q.charAt(q.length - 1) == "?") {
                 var an = localStorage.getItem("latestAnimal");
-                $("p").text("What would the right answer be for a " + localStorage.getItem("latestAnimal")+ "? (Y/N)");
+                $("p").text("What would the right answer be for a " + localStorage.getItem("latestAnimal") + "? (Y/N)");
                 var v = document.getElementById("textInput");
                 v.style.visibility = 'hidden';  //hide text input
                 $("div.checkBoxInput").show();  //display checkboxes for user to select
@@ -157,7 +157,7 @@ function updateTree(node) {
                 _node = JSON.parse(_node);
                 traverse(_node);
                 localStorage.setItem("root", JSON.stringify(_node)); //save modified data into binary tree
-                 $("form").hide();
+                $("form").hide();
                 document.getElementById("yesCheckbox").checked = false;   //reset check box
                 document.getElementById("noCheckbox").checked = false;   //reset check box
                 $("p").text(localStorage.getItem("latestAnimal") + " has been recorded.\nYou won!");
